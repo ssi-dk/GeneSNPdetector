@@ -1,0 +1,4 @@
+20230523|094748| 11243| ERROR: The following critical files could not be used
+20230523|094748| 11243| /srv/data/tools/git.repositories/GeneSNPdetector/../assemblies/GAS-2023-0003.fasta
+20230523|094748| 11243| /srv/data/tools/git.repositories/GeneSNPdetector/../studies/genes/virulence/speA_speC_ssrA_rofA.fasta
+20230523|094748| 11243| Check your paths and file permissions and try again

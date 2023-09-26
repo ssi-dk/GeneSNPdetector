@@ -1,0 +1,5 @@
+ref_name	position	ref_base	alt_base	notes	DOI	article_link
+ssrA_with_leader	11	G	C	Causes increased expression of virulence gene speA due to transcriptional read-through	https://doi.org/10.1038/s41467-023-36717-4	https://www.nature.com/articles/s41467-023-36717-4
+rofA	954	G	T	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
+rofA	955	T	G	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
+rofA	1471	G	A	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
