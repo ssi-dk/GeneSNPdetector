@@ -1,37 +1,37 @@
-ref_name	position	ref_base	alt_base	type	notes	DOI	article_link
-ssrA_with_leader	11	G	C	M1UK	Causes increased expression of virulence gene speA due to transcriptional read-through	https://doi.org/10.1038/s41467-023-36717-4	https://www.nature.com/articles/s41467-023-36717-4
-rofA	954	G	T	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
-rofA	955	T	G	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
-rofA	1471	G	A	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
-M5005_Spy0243	744	T	C	M1UK	Associated with M1UK lineage		
-M5005_Spy0525	346	G	T	M1UK	Associated with M1UK lineage		
-sagE	154	G	A	M1UK	Associated with M1UK lineage		
-M5005_Spy0609	899	T	C	M1UK	Associated with M1UK lineage		
-trmD	130	G	A	M1UK	Associated with M1UK lineage		
-recJ	1007	C	T	M1UK	Associated with M1UK lineage		
-M5005_Spy0779	441	T	C	M1UK	Associated with M1UK lineage		
-murB	244	G	A	M1UK	Associated with M1UK lineage		
-M5005_Spy0933	302	C	T	M1UK	Associated with M1UK lineage		
-pstB	367	C	A	M1UK	Associated with M1UK lineage		
-metK2	661	G	A	M1UK	Associated with M1UK lineage		
-msrA	95	C	T	M1UK	Associated with M1UK lineage		
-tlpA	212	C	T	M1UK	Associated with M1UK lineage		
-M5005_Spy1293	404	C	T	M1UK	Associated with M1UK lineage		
-M5005_Spy1400	198	G	T	M1UK	Associated with M1UK lineage		
-M5005_Spy1490	693	G	A	M1UK	Associated with M1UK lineage		
-gldA	524	G	A	M1UK	Associated with M1UK lineage		
-M5005_Spy1772	181	G	A	M1UK	Associated with M1UK lineage		
-purK	889	A	G	M1DK	Associated with M1DK lineage		
-M5005_Spy0596	683	T	C	M1DK	Associated with M1DK lineage		
-M5005_Spy0750	442	G	A	M1DK	Associated with M1DK lineage		
-M5005_Spy0793	336	C	T	M1DK	Associated with M1DK lineage		
-M5005_Spy0883	729	G	A	M1DK	Associated with M1DK lineage		
-oadB	57	G	A	M1DK	Associated with M1DK lineage		
-M5005_Spy0920	43	G	A	M1DK	Associated with M1DK lineage		
-M5005_Spy0957	417	T	G	M1DK	Associated with M1DK lineage		
-M5005_Spy0980	908	A	G	M1DK	Associated with M1DK lineage		
-dltA	1318	C	T	M1DK	Associated with M1DK lineage		
-M5005_Spy1084	397	C	T	M1DK	Associated with M1DK lineage		
-obg	76	C	T	M1DK	Associated with M1DK lineage		
-M5005_Spy1313	260	A	G	M1DK	Associated with M1DK lineage		
-shp	291	G	T	M1DK	Associated with M1DK lineage		
+ref_name	level	position	ref_base	alt_base	type	notes	DOI	article_link
+ssrA_with_leader	Nucleotide	11	G	C	M1UK	Causes increased expression of virulence gene speA due to transcriptional read-through	https://doi.org/10.1038/s41467-023-36717-4	https://www.nature.com/articles/s41467-023-36717-4
+rofA	Nucleotide	954	G	T	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
+rofA	Nucleotide	955	T	G	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
+rofA	Nucleotide	1471	G	A	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
+M5005_Spy0243	Nucleotide	744	T	C	M1UK	Associated with M1UK lineage		
+M5005_Spy0525	Nucleotide	346	G	T	M1UK	Associated with M1UK lineage		
+sagE	Nucleotide	154	G	A	M1UK	Associated with M1UK lineage		
+M5005_Spy0609	Nucleotide	899	T	C	M1UK	Associated with M1UK lineage		
+trmD	Nucleotide	130	G	A	M1UK	Associated with M1UK lineage		
+recJ	Nucleotide	1007	C	T	M1UK	Associated with M1UK lineage		
+M5005_Spy0779	Nucleotide	441	T	C	M1UK	Associated with M1UK lineage		
+murB	Nucleotide	244	G	A	M1UK	Associated with M1UK lineage		
+M5005_Spy0933	Nucleotide	302	C	T	M1UK	Associated with M1UK lineage		
+pstB	Nucleotide	367	C	A	M1UK	Associated with M1UK lineage		
+metK2	Nucleotide	661	G	A	M1UK	Associated with M1UK lineage		
+msrA	Nucleotide	95	C	T	M1UK	Associated with M1UK lineage		
+tlpA	Nucleotide	212	C	T	M1UK	Associated with M1UK lineage		
+M5005_Spy1293	Nucleotide	404	C	T	M1UK	Associated with M1UK lineage		
+M5005_Spy1400	Nucleotide	198	G	T	M1UK	Associated with M1UK lineage		
+M5005_Spy1490	Nucleotide	693	G	A	M1UK	Associated with M1UK lineage		
+gldA	Nucleotide	524	G	A	M1UK	Associated with M1UK lineage		
+M5005_Spy1772	Nucleotide	181	G	A	M1UK	Associated with M1UK lineage		
+purK	Nucleotide	889	A	G	M1DK	Associated with M1DK lineage		
+M5005_Spy0596	Nucleotide	683	T	C	M1DK	Associated with M1DK lineage		
+M5005_Spy0750	Nucleotide	442	G	A	M1DK	Associated with M1DK lineage		
+M5005_Spy0793	Nucleotide	336	C	T	M1DK	Associated with M1DK lineage		
+M5005_Spy0883	Nucleotide	729	G	A	M1DK	Associated with M1DK lineage		
+oadB	Nucleotide	57	G	A	M1DK	Associated with M1DK lineage		
+M5005_Spy0920	Nucleotide	43	G	A	M1DK	Associated with M1DK lineage		
+M5005_Spy0957	Nucleotide	417	T	G	M1DK	Associated with M1DK lineage		
+M5005_Spy0980	Nucleotide	908	A	G	M1DK	Associated with M1DK lineage		
+dltA	Nucleotide	1318	C	T	M1DK	Associated with M1DK lineage		
+M5005_Spy1084	Nucleotide	397	C	T	M1DK	Associated with M1DK lineage		
+obg	Nucleotide	76	C	T	M1DK	Associated with M1DK lineage		
+M5005_Spy1313	Nucleotide	260	A	G	M1DK	Associated with M1DK lineage		
+shp	Nucleotide	291	G	T	M1DK	Associated with M1DK lineage		

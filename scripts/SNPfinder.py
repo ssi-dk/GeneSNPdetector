@@ -2,6 +2,19 @@
 
 import os
 import sys
+from math import floor
+
+def load_fasta(fasta_file):
+	fasta_dict = {}
+	with open(fasta_file) as f:
+		for line in f:
+			line = line.rstrip('\n')
+			if line[0] == ">":
+				header = line[1:]
+				fasta_dict[header] = ""
+			else:
+				fasta_dict[header] += line
+	return(fasta_dict)
 
 
 def run_nucmer(query,reference,prefix):
@@ -28,6 +41,7 @@ def load_reference_snps(reference_snp_file):
 				firstline = False
 				try:
 					ref_idx = line.index("ref_name")
+					level_idx = line.index("level")
 					pos_idx = line.index("position")
 					refbase_idx = line.index("ref_base")
 					altbase_idx = line.index("alt_base")
@@ -139,3 +153,44 @@ def print_matrix_and_type(snps_dict,snp_reference,matrix_out_file,type_dict,type
 		o2.write("\t".join(o2_line)+"\n")
 	o.close()
 	o2.close()
+
+def get_amino_acid_mutation(nt_seq,nt_pos,nt_ref,nt_alt):
+	#DNA_Nucleotides = ['A', 'C', 'G', 'T']
+	#DNA_ReverseComplement = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G'}
+	DNA_Codons = {
+		# 'M' - START, '_' - STOP
+		"GCT": "A", "GCC": "A", "GCA": "A", "GCG": "A",
+		"TGT": "C", "TGC": "C",
+		"GAT": "D", "GAC": "D",
+		"GAA": "E", "GAG": "E",
+		"TTT": "F", "TTC": "F",
+		"GGT": "G", "GGC": "G", "GGA": "G", "GGG": "G",
+		"CAT": "H", "CAC": "H",
+		"ATA": "I", "ATT": "I", "ATC": "I",
+		"AAA": "K", "AAG": "K",
+		"TTA": "L", "TTG": "L", "CTT": "L", "CTC": "L", "CTA": "L", "CTG": "L",
+		"ATG": "M",
+		"AAT": "N", "AAC": "N",
+		"CCT": "P", "CCC": "P", "CCA": "P", "CCG": "P",
+		"CAA": "Q", "CAG": "Q",
+		"CGT": "R", "CGC": "R", "CGA": "R", "CGG": "R", "AGA": "R", "AGG": "R",
+		"TCT": "S", "TCC": "S", "TCA": "S", "TCG": "S", "AGT": "S", "AGC": "S",
+		"ACT": "T", "ACC": "T", "ACA": "T", "ACG": "T",
+		"GTT": "V", "GTC": "V", "GTA": "V", "GTG": "V",
+		"TGG": "W",
+		"TAT": "Y", "TAC": "Y",
+		"TAA": "_", "TAG": "_", "TGA": "_"
+	}
+	codon_start_idx = floor((nt_pos-1)/3)*3
+	codon_mut_idx = nt_pos-codon_start_idx-1
+	ref_codon = nt_seq[codon_start_idx:(codon_start_idx+3)]
+	print(ref_codon)
+	print(codon_mut_idx)
+	print(nt_alt)
+	alt_codon = list(ref_codon)
+	alt_codon[codon_mut_idx] = nt_alt
+	alt_codon = "".join(alt_codon)
+	print(ref_codon)
+	aa_ref = DNA_Codons[ref_codon]
+	aa_alt = DNA_Codons[alt_codon]
+	return(aa_ref,aa_alt)

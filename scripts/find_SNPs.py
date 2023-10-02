@@ -31,7 +31,6 @@ def main(args):
 		os.makedirs(args.output)
 	SNPtable = os.path.join(os.path.dirname(os.path.realpath(__file__)),"..","resources",args.scheme+".tsv")
 	reference_fasta = os.path.join(os.path.dirname(os.path.realpath(__file__)),"..","resources",args.scheme+".fasta")
-	print(reference_fasta)
 	snp_reference,lineage_dict,lineage_list = sf.load_reference_snps(SNPtable)
 
 	for query in args.Query:
