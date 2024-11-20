@@ -1,0 +1,61 @@
+---
+title: "Staphylococcus epidermidis point mutation AMR"
+subtitle: ""
+author: "Thor Bech Johannesen, Sequencing and Bioinformatics, THEJ@ssi.dk"
+date: "`r strftime(Sys.Date(), format='%B %d %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: 
+      collapsed: true
+knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = substr(inputFile,1,nchar(inputFile)-4))})  
+---
+
+
+
+## S. epidermidis point mutation AMR summary
+
+<br>
+
+
+```{r setup, include=FALSE}
+library(ggplot2); packageVersion("ggplot2")
+library(dplyr); packageVersion("dplyr")
+library(tibble); packageVersion("tibble")
+library(kableExtra)
+
+knitr::opts_chunk$set(echo = TRUE)
+options(knitr.kable.NA = '')
+knitr::opts_chunk$set(message = FALSE, warning=FALSE)
+options(scipen=999)
+options(dplyr.summarise.inform = FALSE)
+
+input_folder = args[1]
+
+
+### to load ariba report
+load_ariba = function(ariba_report_path) {
+  d_full = read.table(ariba_report_path,header=TRUE,sep="\t",comment.char = "",check.names = FALSE) %>%
+    dplyr::rename(ariba_ref_name = "#ariba_ref_name")
+  return(d_full)
+}
+
+### to load all ariba reports from folder
+load_ariba_from_folder = function(input_folder) {
+  d_full = data.frame()
+  samples = list.files(input_folder)
+  for (sample in samples) {
+    ariba_report_path = file.path(input_folder,sample,"report.tsv")
+    if (file.exists(ariba_report_path)) {
+      d = load_ariba(ariba_report_path)
+      d$sample_name = sample
+      d_full = rbind(d_full,d)
+    }
+  }
+  return(d_full)
+}
+
+
+
+```
