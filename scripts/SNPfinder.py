@@ -31,6 +31,7 @@ def run_nucmer_and_showsnps(query,reference,prefix):
 
 def load_reference_snps(reference_snp_file):
 	snp_reference = {}
+	mut_reference =  {}
 	type_dict = {}
 	type_list = []
 	with open(reference_snp_file) as f:
@@ -43,20 +44,29 @@ def load_reference_snps(reference_snp_file):
 					ref_idx = line.index("ref_name")
 					level_idx = line.index("level")
 					pos_idx = line.index("position")
-					refbase_idx = line.index("ref_base")
-					altbase_idx = line.index("alt_base")
+					refbase_idx = line.index("ref")
+					altbase_idx = line.index("alt")
 					type_idx = line.index("type")
 				except:
 					print("Incorrect headers in snp reference file\tMust contain \"ref_name\", \"position\", \"ref_base\", \"alt_base\"")
 			else:
-				try: 
-					snp_reference[line[ref_idx]][line[pos_idx]] = [line[refbase_idx],line[altbase_idx],line]
-				except:
-					snp_reference[line[ref_idx]] = {line[pos_idx]:[line[refbase_idx],line[altbase_idx],line]}
-				type_dict[line[ref_idx]+"::"+line[refbase_idx]+line[pos_idx]+line[altbase_idx]] = line[type_idx]
-				if not line[type_idx] in type_list:
-					type_list.append(line[type_idx])
-	return(snp_reference,type_dict,type_list)
+				if line[level_idx] == "Nucleotide":
+					try: 
+						snp_reference[line[ref_idx]][line[pos_idx]] = [line[refbase_idx],line[altbase_idx],line]
+					except:
+						snp_reference[line[ref_idx]] = {line[pos_idx]:[line[refbase_idx],line[altbase_idx],line]}
+					type_dict[line[ref_idx]+"::"+line[refbase_idx]+line[pos_idx]+line[altbase_idx]] = line[type_idx]
+					if not line[type_idx] in type_list:
+						type_list.append(line[type_idx])
+				else:
+					try: 
+						mut_reference[line[ref_idx]][line[pos_idx]] = [line[refbase_idx],line[altbase_idx],line]
+					except:
+						mut_reference[line[ref_idx]] = {line[pos_idx]:[line[refbase_idx],line[altbase_idx],line]}
+					type_dict[line[ref_idx]+"::"+line[refbase_idx]+line[pos_idx]+line[altbase_idx]] = line[type_idx]
+					if not line[type_idx] in type_list:
+						type_list.append(line[type_idx])
+	return(snp_reference,mut_reference,type_dict,type_list)
 
 
 def extract_all_from_snpfile(prefix):
@@ -74,7 +84,8 @@ def extract_all_from_snpfile(prefix):
 			snp_list.append(snp_reference[ref_name][pos][2])
 	return(snps,snp_list)
 
-def extract_from_snpfile(prefix,snp_reference):
+def extract_from_snpfile(prefix,snp_reference,mut_reference,reference_fasta_file):
+	reference_fasta_dict = load_fasta(reference_fasta_file)
 	showsnps_file = prefix+".snps"
 	snps = []
 	snp_list = []
@@ -90,7 +101,19 @@ def extract_from_snpfile(prefix,snp_reference):
 					query_name = line[11]
 					query_pos = line[3]
 					snps.append(ref_name+"::"+ref_base+pos+alt_base)
-					snp_list.append([ref_name]+[ref_name+"::"+ref_base+pos+alt_base]+snp_reference[ref_name][pos][2][1:]+[query_name,query_pos])
+					snp_list.append([ref_name,"Nucleotide"]+[ref_name+"::"+ref_base+pos+alt_base]+snp_reference[ref_name][pos][2][1:]+[query_name,query_pos])
+					print(snp_list)
+			if ref_name in mut_reference:
+				pos = line[0]
+				aa_pos = str(floor(int(pos)/3)+1)
+				if aa_pos in mut_reference[ref_name]:
+					ref_base = line[1]
+					alt_base = line[2]
+					query_name = line[11]
+					query_pos = line[3]
+					ref_aa,alt_aa = get_amino_acid_mutation(reference_fasta_dict[ref_name],pos,ref_base,alt_base)
+					snps.append(ref_name+"::"+ref_aa+aa_pos+alt_aa)
+					snp_list.append([ref_name,"Protein"]+[ref_name+"::"+ref_aa+pos+alt_aa]+snp_reference[ref_name][aa_pos][2][1:]+[query_name,query_pos])
 					print(snp_list)
 	return(snps,snp_list)
 
@@ -113,9 +136,9 @@ def print_matrix(snps_dict,snp_reference,matrix_out_file):
 		o.write("\t".join(printline)+"\n")
 
 
-def print_list(snp_lists_dict,snp_reference,list_out_file):
+def print_list(snp_lists_dict,list_out_file):
 	o = open(list_out_file,"w")
-	o.write("query\tref_name\tSNP\tpos\tref_base\talt_base\tnotes\tDOI\tarticle_link\tquery_name\tquery_pos\n")
+	o.write("query\tref_name\tlevel\tSNP\tpos\tref\talt\tnotes\tDOI\tarticle_link\tquery_name\tquery_pos\n")
 	for ID in snp_lists_dict:
 		for snp_list in snp_lists_dict[ID]:
 			print("\t".join(snp_list))
@@ -184,13 +207,9 @@ def get_amino_acid_mutation(nt_seq,nt_pos,nt_ref,nt_alt):
 	codon_start_idx = floor((nt_pos-1)/3)*3
 	codon_mut_idx = nt_pos-codon_start_idx-1
 	ref_codon = nt_seq[codon_start_idx:(codon_start_idx+3)]
-	print(ref_codon)
-	print(codon_mut_idx)
-	print(nt_alt)
 	alt_codon = list(ref_codon)
 	alt_codon[codon_mut_idx] = nt_alt
 	alt_codon = "".join(alt_codon)
-	print(ref_codon)
 	aa_ref = DNA_Codons[ref_codon]
 	aa_alt = DNA_Codons[alt_codon]
 	return(aa_ref,aa_alt)

@@ -1,4 +1,4 @@
-ref_name	level	position	ref_base	alt_base	type	notes	DOI	article_link
+ref_name	level	position	ref	alt	type	notes	DOI	article_link
 ssrA_with_leader	Nucleotide	11	G	C	M1UK	Causes increased expression of virulence gene speA due to transcriptional read-through	https://doi.org/10.1038/s41467-023-36717-4	https://www.nature.com/articles/s41467-023-36717-4
 rofA	Nucleotide	954	G	T	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
 rofA	Nucleotide	955	T	G	M1UK	Associated with M1UK lineage	https://doi.org/10.1016/S1473-3099(19)30446-3	https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(19)30446-3/fulltext
