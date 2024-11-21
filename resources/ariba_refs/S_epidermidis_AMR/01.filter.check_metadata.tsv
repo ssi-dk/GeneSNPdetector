@@ -4,18 +4,29 @@
 23S	0	1	G2576T	Linezolid	Linezolid
 23S	0	1	G2603T	Linezolid	Linezolid
 fusA	1	1	L461K	Fusidic acid	Fucidic acid
-gyrA	1	1	S84F	Fluoroquinolones	Fluoroquinolones
-gyrA	1	1	S84Y	Fluoroquinolones	Fluoroquinolones
-parC	1	1	S80F	Fluoroquinolones	Fluoroquinolones
-parC	1	1	S80I	Fluoroquinolones	Fluoroquinolones
-parC	1	1	S80Y	Fluoroquinolones	Fluoroquinolones
-parC	1	1	D84Y	Fluoroquinolones	Fluoroquinolones
-parE	1	1	N404S	Fluoroquinolones	Fluoroquinolones
+gyrA	1	1	S84F	Fluoroquinolone	Fluoroquinolone
+gyrA	1	1	S84Y	Fluoroquinolone	Fluoroquinolone
+parC	1	1	S80F	Fluoroquinolone	Fluoroquinolone
+parC	1	1	S80I	Fluoroquinolone	Fluoroquinolone
+parC	1	1	S80Y	Fluoroquinolone	Fluoroquinolone
+parC	1	1	D84Y	Fluoroquinolone	Fluoroquinolone
+parE	1	1	N404S	Fluoroquinolone	Fluoroquinolone
 qacA	1	1	A157G	Chlorhexidine	Chlorhexidine
+rpoB	1	1	S464F	Rifampicin, vancomycin	Rifampicin, vancomycin
 rpoB	1	1	S464P	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	S464Y	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	L466S	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	Q468K	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	Q468L	Rifampicin, vancomycin	Rifampicin, vancomycin
 rpoB	1	1	D471E	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	D471Y	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	H481C	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	H481N	Rifampicin, vancomycin	Rifampicin, vancomycin
 rpoB	1	1	H481Y	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	S486F	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	S486Y	Rifampicin, vancomycin	Rifampicin, vancomycin
 rpoB	1	1	I527M	Rifampicin, vancomycin	Rifampicin, vancomycin
+rpoB	1	1	S529L	Rifampicin, vancomycin	Rifampicin, vancomycin
 rpoB	1	1	A534V	Rifampicin, vancomycin	Rifampicin, vancomycin
 walK	1	1	P415L	Daptomycin	Daptomycin
 walK	1	1	V500F	Daptomycin	Daptomycin
