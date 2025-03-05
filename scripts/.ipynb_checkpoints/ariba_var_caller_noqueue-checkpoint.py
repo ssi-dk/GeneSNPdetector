@@ -69,7 +69,7 @@ def queue_ariba(ariba_reference,r1_path,r2_path,output_dir,partition):
 	return(cmd)
 
 def summarize_ariba_results(ariba_report_path,ariba_reference,output_file,partition,dependency_job_ids):
-	cmd = "source activate env_r-markdown; Rscript /srv/data/tools/git.repositories/GeneSNPdetector/scripts/ariba_summary.R {ariba_report_path} {output_file} {ariba_reference}; conda deactivate".format(ariba_report_path=ariba_report_path,output_file=output_file,ariba_reference=ariba_reference)
+	cmd = "conda activate thej_r-rmarkdown; Rscript /srv/data/tools/git.repositories/GeneSNPdetector/scripts/ariba_summary.R {ariba_report_path} {output_file} {ariba_reference}; conda deactivate".format(ariba_report_path=ariba_report_path,output_file=output_file,ariba_reference=ariba_reference)
 	print(cmd)
 	if len(dependency_job_ids) == 0:
 		process = subprocess.Popen("sbatch -D . -c 1 --mem=4G -J ariba_var_caller_summary -p {partition} --wrap=\'{cmd}\'".format(partition=partition,cmd=cmd), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, env=my_env, encoding='utf-8')

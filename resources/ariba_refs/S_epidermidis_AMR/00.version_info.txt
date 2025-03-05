@@ -1,5 +1,5 @@
 ARIBA run with this command:
-/users/data/SSI/Conda_envs/ariba/bin/ariba prepareref prepareref -f S_epidermidis_AMR.fasta -m S_epidermidis_AMR_ariba_metadata.tsv ariba_refs/S_epidermidis_AMR/
+/users/data/SSI/Conda_envs/ariba/bin/ariba prepareref prepareref -f S_epidermidis_AMR.fasta -m S_epidermidis_AMR_ariba_metadata.tsv ariba_refs/S_epidermidis_AMR
 from this directory: /dpssi/data/Projects/thej_Sepidermidis_point_resistance/proj/Tools/git.repositories/GeneSNPdetector/resources
 
 ARIBA version: 2.14.6

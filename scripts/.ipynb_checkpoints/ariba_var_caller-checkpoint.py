@@ -31,33 +31,36 @@ def parse_args(argv):
 def get_read_paths_from_folder(directory):
 	sample_read_dict = {}
 	N_WGS_isolate_regex = "(?P<sample_name>.+?)(?P<sample_number>(_S[0-9]+)?)(?P<lane>(_L[0-9]+)?)_(?P<paired_read_number>R[1|2])(?P<set_number>(_[0-9]+)?)(?P<file_extension>\.fastq\.gz)"
+	N_WGS_isolate_regex = "(?P<sample_name>.+?)_(?P<paired_read_number>[1|2])\.fastq\.gz"
 	read_regex = re.compile(N_WGS_isolate_regex)
 	files = os.listdir(directory)
 	for file in files:
 		read_match = re.match(read_regex,file)
+		print(read_match)
 		if read_match:
 			sample_name = read_match.group("sample_name")
 			if not sample_name in sample_read_dict:
-				if read_match.group("paired_read_number") == "R1":
+				if read_match.group("paired_read_number") == "R1" or read_match.group("paired_read_number") == "1":
 					sample_read_dict[sample_name] = [os.path.join(directory,file),""]
-				elif read_match.group("paired_read_number") == "R2":
+				elif read_match.group("paired_read_number") == "R2" or read_match.group("paired_read_number") == "2":
 					sample_read_dict[sample_name] = ["",os.path.join(directory,file)]
 			else:
-				if read_match.group("paired_read_number") == "R1":
+				if read_match.group("paired_read_number") == "R1" or read_match.group("paired_read_number") == "1":
 					print("hey")
 					if sample_read_dict[sample_name][0] == "":
 						sample_read_dict[sample_name][0] = os.path.join(directory,file)
-				elif read_match.group("paired_read_number") == "R2":
+				elif read_match.group("paired_read_number") == "R2" or read_match.group("paired_read_number") == "2":
 					if sample_read_dict[sample_name][1] == "":
 						sample_read_dict[sample_name][1] = os.path.join(directory,file)
 	return(sample_read_dict)
 
 def queue_ariba(ariba_reference,r1_path,r2_path,output_dir,partition):
+	#cmd = "source /users/home/thobec/.bashrc; conda activate ariba; cd /srv/data/Projects/thej_Sepidermidis_point_resistance/proj/Resources/reads; ariba run --force {ariba_reference} {r1_path} {r2_path} {output_dir}".format(ariba_reference=ariba_reference,r1_path=r1_path,r2_path=r2_path,output_dir=output_dir)
 	cmd = "ariba run --force {ariba_reference} {r1_path} {r2_path} {output_dir}".format(ariba_reference=ariba_reference,r1_path=r1_path,r2_path=r2_path,output_dir=output_dir)
 	print(cmd)
 	#sbatch_cmd = "sbatch -D . -c 4 --mem=12G -J ariba_var_caller -p {partition} -wrap=\"{cmd}\"".format(partition=partition,cmd=cmd)
 	#print(sbatch_cmd)
-	process = subprocess.Popen("sbatch -D . -c 4 --mem=12G -J ariba_var_caller -p {partition} --wrap=\'{cmd}\'".format(partition=partition,cmd=cmd), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, env=my_env, encoding='utf-8')
+	process = subprocess.Popen("sbatch -D . -c 4 --mem=12G -J ariba_var_caller -p {partition} --export=ALL --wrap=\'{cmd}\'".format(partition=partition,cmd=cmd), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, env=my_env, encoding='utf-8')
 	process_out, process_err = process.communicate()
 	sys.stdout.write("{}\n".format(process_out))
 	sys.stderr.write("{}\n".format(process_err))
@@ -65,7 +68,7 @@ def queue_ariba(ariba_reference,r1_path,r2_path,output_dir,partition):
 	return(job_id)
 
 def summarize_ariba_results(ariba_report_path,ariba_reference,output_file,partition,dependency_job_ids):
-	cmd = "source activate env_r-markdown; Rscript /srv/data/tools/git.repositories/GeneSNPdetector/scripts/ariba_summary.R {ariba_report_path} {output_file} {ariba_reference}; conda deactivate".format(ariba_report_path=ariba_report_path,output_file=output_file,ariba_reference=ariba_reference)
+	cmd = "conda activate thej_r-rmarkdown; Rscript /users/data/Projects/thej_Sepidermidis_point_resistance/proj/Tools/git.repositories/GeneSNPdetector/scripts/ariba_summary.R {ariba_report_path} {output_file} {ariba_reference}; conda deactivate".format(ariba_report_path=ariba_report_path,output_file=output_file,ariba_reference=ariba_reference)
 	print(cmd)
 	if len(dependency_job_ids) == 0:
 		process = subprocess.Popen("sbatch -D . -c 1 --mem=4G -J ariba_var_caller_summary -p {partition} --wrap=\'{cmd}\'".format(partition=partition,cmd=cmd), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, env=my_env, encoding='utf-8')

@@ -4,7 +4,5 @@ cluster_2	gyrA
 cluster_3	parC
 cluster_4	fusA
 cluster_5	parE
-cluster_6	walK
-cluster_7	qacA4
-cluster_8	rplC
-cluster_9	rplD
+cluster_6	qacA
+cluster_7	walK
